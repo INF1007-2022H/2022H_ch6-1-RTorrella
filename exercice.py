@@ -2,24 +2,64 @@
 # -*- coding: utf-8 -*-
 
 
-def order(values: list = None) -> list:
-    if values is None:
-        # TODO: demander les valeurs ici
-        pass
+from tabnanny import check
 
-    return []
+
+def order(values: list = None) -> list:
+    
+    if values is None:
+        values = []
+        while len(values) < 10:
+            values.append(input( "Entrer une valeur (int, float ou str) : " ))
+       
+    
+    liste_Entiers = []
+    liste_Floats = []
+    liste_Str = []
+
+    for i in values:
+        type_val = type(i)
+        if type_val is int :
+            liste_Entiers.append(i)
+        elif type_val is float : 
+            liste_Floats.append(i)
+        elif type_val is str :
+            liste_Str.append(i)
+
+    liste_triée = sorted(liste_Entiers) + sorted(liste_Floats) + sorted(liste_Str)
+    return liste_triée
 
 
 def anagrams(words: list = None) -> bool:
     if words is None:
-        # TODO: demander les mots ici
-        pass
+        words = []
+        while len(words) < 2 :
+            words.append(input("Entrer un mot : "))
+        
+    vérif_1 = sorted(list(words[0]))
+    vérif_2 = sorted(list(words[1]))
 
-    return False
+    if vérif_1 == vérif_2:
+        return True 
+    else:
+        return False
 
 
 def contains_doubles(items: list) -> bool:
-    return False
+    items = []
+    while len(items) != 1 :
+        items.append(input("Entrer une valeur : "))
+
+    listeSansDoublons = []
+
+    for i in items : 
+        if i not in listeSansDoublons:
+            listeSansDoublons.append(i)
+
+    if items == listeSansDoublons :
+        return True
+    else:
+        return False
 
 
 def best_grades(student_grades: dict) -> dict:
